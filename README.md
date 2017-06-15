@@ -1,4 +1,4 @@
-## deep-learning-gpu-env 是 GPU 版的深度学习环境，包含以下安装包:
+## 深度学习 docker 环境 GPU 加速版，包含以下安装包:
 
 keras2 + tensorflow + jupyter + flask + openslide + node + npm
 
@@ -6,7 +6,7 @@ keras2 + tensorflow + jupyter + flask + openslide + node + npm
 
     docker build -t name:tag .
 
-## 运行该镜像的方法（GPU）加速
+## 运行该镜像的方法(GPU加速)
 
     nvidia-docker run -d -p 8888:8888 --name test -v /home/pzw:/home/workspace 镜像ID
 
