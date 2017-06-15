@@ -29,9 +29,13 @@ keras2 + tensorflow + jupyter + flask + openslide + node + npm
 注意：安装 nvidia-docker 之前先安装好 docker
 
 为了确认 nvidia-docker 是否安装成功，运行
+
     nvidia-docker run --rm nvidia/cuda nvidia-smi
+
 如果正确输出了本机的 GPU 信息，则安装成功。
+
 例如：
+
     +-----------------------------------------------------------------------------+
     | NVIDIA-SMI 367.48                 Driver Version: 367.48                    |
     |-------------------------------+----------------------+----------------------+
