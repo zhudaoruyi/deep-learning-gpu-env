@@ -1,6 +1,6 @@
-## deep-learning-gpu-env 是 GPU 版的深度学习环境，包含以下安装包
+## deep-learning-gpu-env 是 GPU 版的深度学习环境，包含以下安装包:
 
-    keras2+tensorflow+jupyter+flask+openslide+node+npm
+keras2 + tensorflow + jupyter + flask + openslide + node + npm
 
 ## Dockerfile 构建镜像的方法
 
@@ -24,14 +24,14 @@
 
 ## nvidia-docker 的安装
 
-    参考 [nvidia-docker](https://github.com/zhudaoruyi/nvidia-docker)
+参考 [nvidia-docker](https://github.com/zhudaoruyi/nvidia-docker)
 
 注意：安装 nvidia-docker 之前先安装好 docker
 
-    为了确认 nvidia-docker 是否安装成功，运行
-    ```nvidia-docker run --rm nvidia/cuda nvidia-smi
-    如果正确输出了本机的 GPU 信息，则安装成功。
-    
+为了确认 nvidia-docker 是否安装成功，运行
+    nvidia-docker run --rm nvidia/cuda nvidia-smi
+如果正确输出了本机的 GPU 信息，则安装成功。
+
     +-----------------------------------------------------------------------------+
     | NVIDIA-SMI 367.48                 Driver Version: 367.48                    |
     |-------------------------------+----------------------+----------------------+
