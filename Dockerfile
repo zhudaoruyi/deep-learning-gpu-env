@@ -13,17 +13,17 @@ RUN mkdir -p $CONDA_DIR && \
     /bin/bash /Miniconda3-4.2.12-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
     rm Miniconda3-4.2.12-Linux-x86_64.sh 
 
-#install openslide relyons screen
+# install openslide relyons & screen
 RUN \
-    apt install -y python-imaging && \
-    apt install -y libopenjpeg-dev && \
-    apt install -y libsqlite3-dev && \
-    apt install -y python3-openslide && \
-    apt install -y python3-tk && \
-    apt install -y openslide-tools && \
-    apt install -y screen 
+    apt-get install -y python-imaging \
+    	libopenjpeg-dev \
+    	libsqlite3-dev \
+    	python3-openslide \
+    	python3-tk \
+    	openslide-tools \
+    	screen 
 
-#install node.js node npm 
+# install node.js node npm 
 RUN \
     curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
     apt-get install -y nodejs 
@@ -48,7 +48,7 @@ RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
 
 USER keras
 
-# Python
+# install Python 3.5 &tensorflow-gpu & openslide
 ARG python_version=3.5
 
 RUN conda install -y python=${python_version} && \
@@ -63,15 +63,15 @@ RUN conda install -y python=${python_version} && \
     pip install git+git://github.com/fchollet/keras.git && \
     conda clean -yt
 
-#ADD theanorc /home/keras/.theanorc
+# ADD theanorc /home/keras/.theanorc
 
 ENV PYTHONPATH='/src/:$PYTHONPATH'
 
-WORKDIR /src
+# WORKDIR /src  最好不用这个工作目录，因为 notebook 会以这个为根目录
+WORKDIR /
 
 EXPOSE 8888
 EXPOSE 8081
 EXPOSE 5000
 
 CMD jupyter notebook --port=8888 --ip=0.0.0.0
-
