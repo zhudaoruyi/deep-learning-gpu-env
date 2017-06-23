@@ -13,7 +13,7 @@ RUN mkdir -p $CONDA_DIR && \
     /bin/bash /Miniconda3-4.2.12-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
     rm Miniconda3-4.2.12-Linux-x86_64.sh 
 
-# install openslide relyons & screen
+# install openslide & screen
 RUN \
     apt-get install -y python-imaging \
     	libopenjpeg-dev \
@@ -21,7 +21,8 @@ RUN \
     	python3-openslide \
     	python3-tk \
     	openslide-tools \
-    	screen 
+    	screen \
+        vim
 
 # install node.js node npm 
 RUN \
@@ -48,7 +49,7 @@ RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
 
 USER keras
 
-# install Python 3.5 &tensorflow-gpu & openslide
+# install Python 3.5 & tensorflow-gpu & openslide
 ARG python_version=3.5
 
 RUN conda install -y python=${python_version} && \

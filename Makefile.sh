@@ -3,8 +3,14 @@
 ```
 first of all,docker has been installed.
 judge system ,mac or ubuntu or windows,to decide weather use nvidia-docker or not
-```
 
+SYSTEM=`uname -s`
+if [ $SYSTEM = "Linux" ];then
+	echo "Linux"
+elif [ $SYSTEM = "MacOS" ];then
+	echo "MacOS"
+fi		#endif
+```
 
 SYSTEM=`uname -s`
 if [ $SYSTEM = "Linux" ]; then
@@ -16,18 +22,19 @@ if [ $SYSTEM = "Linux" ]; then
 	# Test nvidia-smi
 	nvidia-docker run --rm nvidia/cuda nvidia-smi 
 
-	sudo docker build -t image_keras .
-	sudo nvidia-docker run -d -p 8888:8888 -p 8081:8081 -p 5000:5000 --name container_keras -v $PWD:/home/workspace image_keras
-	sudo nvidia-docker exec -it container_keras bash
+	sudo docker build -t image_keras:gpu .
+	sudo nvidia-docker run -d -p 8888:8888 -p 8081:8081 -p 5000:5000 --name container_keras -v $PWD:/home/workspace image_keras:gpu
+	sudo docker exec -it container_keras bash make.sh
 elif [ $SYSTEM = "MacOS" ]; then
 	echo "This is $SYSTEM"
-	docker build -t image_keras .
-	docker run -d -p 8888:8888 -p 8081:8081 -p 5000:5000 --name container_keras -v $PWD:/home/workspace image_keras
-	docker exec -it container_keras bash
+	docker build -t image_keras:cpu .
+	docker run -d -p 8888:8888 -p 8081:8081 -p 5000:5000 --name container_keras -v $PWD:/home/workspace image_keras:cpu
+	docker exec -it container_keras bash make.sh
 elif [ $SYSTEM = "DOS" ]; then
-	docker build -t image_keras .
-	docker run -d -p 8888:8888 -p 8081:8081 -p 5000:5000 --name container_keras -v $PWD:/home/workspace image_keras
-	docker exec -it container_keras bash
+	docker build -t image_keras:cpu .
+	docker run -d -p 8888:8888 -p 8081:8081 -p 5000:5000 --name container_keras -v $PWD:/home/workspace image_keras:cpu
+	docker exec -it container_keras bash make.sh
 else
 	echo "not a good system"
 fi      #endif
+
