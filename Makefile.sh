@@ -30,10 +30,11 @@ elif [ $SYSTEM = "Darwin" ]; then
 	docker build -t image_keras:cpu .
 	docker run -d -p 8888:8888 -p 8081:8081 -p 5000:5000 --name container_keras -v $PWD:/home/workspace image_keras:cpu
 	docker exec -it container_keras bash make.sh
-elif [ $SYSTEM = "DOS" ]; then
-	docker build -t image_keras:cpu .
-	docker run -d -p 8888:8888 -p 8081:8081 -p 5000:5000 --name container_keras -v $PWD:/home/workspace image_keras:cpu
-	docker exec -it container_keras bash make.sh
+## not support uname command in window
+#elif [ $SYSTEM = "DOS" ]; then
+#	docker build -t image_keras:cpu .
+#	docker run -d -p 8888:8888 -p 8081:8081 -p 5000:5000 --name container_keras -v $PWD:/home/workspace image_keras:cpu
+#	docker exec -it container_keras bash make.sh
 else
 	echo "not a good system"
 fi      #endif
